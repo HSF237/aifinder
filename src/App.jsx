@@ -223,46 +223,45 @@ function SBar({label, score, delay}) {
   );
 }
 
-function ExplainPanel({result, urlMatches}) {
+function ExplainPanel({result}) {
   const [open, setOpen] = useState(false);
-  const [text, setText] = useState("");
-  const [loading, setLoading] = useState(false);
-  const load = async () => {
-    setOpen(v => !v);
-    if (text || loading) return;
-    setLoading(true);
-    try {
-      const urlCtx = urlMatches?.length ? `\nURL signatures: ${urlMatches.map(m=>m.l).join(", ")}.` : "";
-      const res = await fetch("/api/analyze", {
-        method:"POST", headers:{"Content-Type":"application/json"},
-        body: JSON.stringify({
-          model: "claude-sonnet-4-6", max_tokens: 900,
-          system: "You are an AI content detection expert explaining results to a non-technical user. Write 3 short, friendly paragraphs. No markdown, no bullet points, no bold. Just clear prose.",
-          messages: [{role:"user", content:`Explain these AI detection results:\nVerdict: ${result.verdict}\nAI probability: ${result.overallScore}%\nArtificial patterns: ${result.signals.artificialPatterns}%\nNoise consistency: ${result.signals.noiseConsistency}%\nSemantic coherence: ${result.signals.semanticCoherence}%\nMetadata anomalies: ${result.signals.metadataAnomalies}%\nDetected: ${result.signalTags?.join(", ")}${urlCtx}\n\nExplain what each signal means and what user should take away.`}]
-        })
-      });
-      const d = await res.json();
-      setText(d.content?.map(i=>i.text||"").join("") || "Could not load.");
-    } catch { setText("Failed. Please try again."); }
-    setLoading(false);
-  };
+  const score = result.overallScore;
+  const signals = [
+    {label:"Artificial Patterns", val:result.signals.artificialPatterns, desc:"How many AI-like visual patterns (smooth textures, perfect symmetry) were detected."},
+    {label:"Noise Consistency", val:result.signals.noiseConsistency, desc:"Whether image noise matches natural camera sensors or appears digitally synthesized."},
+    {label:"Semantic Coherence", val:result.signals.semanticCoherence, desc:"How logically consistent the image content is — AI often creates subtle impossibilities."},
+    {label:"Metadata Anomalies", val:result.signals.metadataAnomalies, desc:"Unusual patterns in the image structure that differ from real camera output."},
+  ];
+  const overall = score >= 80 ? "This image shows strong indicators of AI generation. The analysis detected multiple telltale artifacts commonly produced by generative AI models."
+    : score >= 60 ? "This image likely has AI-generated elements. Several signals point toward artificial synthesis, though some natural characteristics are present."
+    : score >= 30 ? "The analysis is inconclusive. Some AI-like signals were detected, but the image also shows characteristics of real photography."
+    : "This image appears to be authentic. The analysis found minimal AI indicators and the image shows natural photographic properties consistent with real cameras.";
   return (
     <div style={{marginBottom:10}}>
-      <button className="btn-outline" onClick={load} style={{width:"100%"}}>
+      <button className="btn-outline" onClick={()=>setOpen(v=>!v)} style={{width:"100%"}}>
         <span style={{display:"inline-flex",alignItems:"center",gap:8}}>
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3"/><path d="M7 5v3M7 10h.01" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>
           {open ? "Hide AI Analysis" : "Get Detailed AI Analysis"}
         </span>
       </button>
       {open && (
-        <div style={{marginTop:10,background:"rgba(255,255,255,.025)",border:"1px solid rgba(255,255,255,.07)",borderRadius:14,padding:"18px 20px",animation:"fadeUp .3s ease both"}}>
-          {loading ? (
-            <div style={{textAlign:"center",padding:"1rem"}}>
-              <span className="dot-loader" style={{background:"#a78bfa"}}/><span className="dot-loader" style={{background:"#a78bfa"}}/><span className="dot-loader" style={{background:"#a78bfa"}}/>
-              <p style={{margin:"12px 0 0",fontSize:12,color:"rgba(255,255,255,.4)",letterSpacing:.5}}>ANALYZING SIGNALS...</p>
+        <div style={{marginTop:10,background:"rgba(255,255,255,.025)",border:"1px solid rgba(255,255,255,.07)",borderRadius:14,padding:"20px 22px",animation:"fadeUp .3s ease both"}}>
+          <p style={{margin:"0 0 16px",fontSize:13.5,lineHeight:1.8,color:"rgba(255,255,255,.65)"}}>{overall}</p>
+          <div style={{display:"flex",flexDirection:"column",gap:12}}>
+            {signals.map(s=>(
+              <div key={s.label} style={{padding:"12px 14px",borderRadius:10,background:"rgba(255,255,255,.03)",border:"1px solid rgba(255,255,255,.06)"}}>
+                <div style={{display:"flex",justifyContent:"space-between",marginBottom:5}}>
+                  <span style={{fontSize:13,fontWeight:600,color:"rgba(255,255,255,.8)"}}>{s.label}</span>
+                  <span className="mono" style={{fontSize:12,color:s.val>60?"#fca5a5":s.val>35?"#fcd34d":"#86efac",fontWeight:600}}>{s.val}%</span>
+                </div>
+                <p style={{margin:0,fontSize:12,color:"rgba(255,255,255,.4)",lineHeight:1.6}}>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+          {result.likelyTool?.name && result.likelyTool.name !== "Unknown" && (
+            <div style={{marginTop:14,padding:"12px 14px",borderRadius:10,background:"rgba(124,58,237,.06)",border:"1px solid rgba(124,58,237,.2)"}}>
+              <p style={{margin:0,fontSize:13,color:"rgba(255,255,255,.7)"}}><span style={{fontWeight:600,color:"#a78bfa"}}>Likely Tool:</span> {result.likelyTool.name} ({result.likelyTool.confidence}% confidence) — {result.likelyTool.reasoning}</p>
             </div>
-          ) : (
-            <p style={{margin:0,fontSize:13.5,lineHeight:1.85,color:"rgba(255,255,255,.6)",whiteSpace:"pre-wrap"}}>{text}</p>
           )}
         </div>
       )}
