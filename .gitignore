@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+aifinder/node_modules/
+
+# Environment variables - NEVER commit these
+.env
+.env.local
+.env.*.local
+aifinder/.env
+aifinder/.env.local
+
+# Build output
+dist/
+aifinder/dist/
+
+# Vite
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code local settings
+.claude/settings.local.json

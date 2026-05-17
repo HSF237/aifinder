@@ -1,0 +1,261 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628">
+  <defs>
+    <!-- Fonts -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,700;12..96,800&amp;family=JetBrains+Mono:wght@300;400;600&amp;display=swap');
+    </style>
+
+    <!-- Radial gradients -->
+    <radialGradient id="coreGlow" cx="72%" cy="50%" r="38%">
+      <stop offset="0%" stop-color="#3b1880" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#180840" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#04040a" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="leftAmb" cx="18%" cy="50%" r="35%">
+      <stop offset="0%" stop-color="#14083a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#04040a" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="pulseCore" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.22"/>
+      <stop offset="55%" stop-color="#4c1d95" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#04040a" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Hex grid pattern -->
+    <pattern id="hexGrid" x="0" y="0" width="40" height="46.2" patternUnits="userSpaceOnUse">
+      <polygon points="20,2 38,12 38,34 20,44 2,34 2,12"
+               fill="none" stroke="#7c3aed" stroke-width="0.3" stroke-opacity="0.15"/>
+    </pattern>
+
+    <!-- Filters -->
+    <filter id="glow8" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow4" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow3" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow14" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="14" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <clipPath id="clip"><rect width="1200" height="628"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#clip)">
+
+    <!-- ============ BACKGROUND ============ -->
+    <rect width="1200" height="628" fill="#04040a"/>
+    <rect width="1200" height="628" fill="url(#coreGlow)"/>
+    <rect width="1200" height="628" fill="url(#leftAmb)"/>
+    <rect width="1200" height="628" fill="url(#hexGrid)" opacity="0.7"/>
+
+    <!-- Subtle left/right fade split -->
+    <rect x="0" y="0" width="560" height="628" fill="#04040a" fill-opacity="0.22"/>
+
+    <!-- Panel separator line -->
+    <line x1="548" y1="60" x2="548" y2="568" stroke="#7c3aed" stroke-width="0.6" stroke-opacity="0.1"/>
+
+    <!-- ============ RIGHT: DETECTION VISUALIZATION ============ -->
+
+    <!-- Ambient pulse behind reticle -->
+    <circle cx="858" cy="314" r="235" fill="url(#pulseCore)"/>
+
+    <!-- Concentric ring system (outermost to innermost) -->
+    <circle cx="858" cy="314" r="224" fill="none" stroke="#7c3aed" stroke-width="0.35" stroke-opacity="0.1"/>
+    <circle cx="858" cy="314" r="200" fill="none" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.14"/>
+    <circle cx="858" cy="314" r="174" fill="none" stroke="#a78bfa" stroke-width="0.5" stroke-opacity="0.2"/>
+    <circle cx="858" cy="314" r="148" fill="none" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.25"/>
+    <circle cx="858" cy="314" r="120" fill="none" stroke="#7c3aed" stroke-width="0.8" stroke-opacity="0.3" filter="url(#glow4)"/>
+    <circle cx="858" cy="314" r="92"  fill="none" stroke="#a78bfa" stroke-width="1"   stroke-opacity="0.45" filter="url(#glow4)"/>
+    <circle cx="858" cy="314" r="62"  fill="none" stroke="#7c3aed" stroke-width="1.4" stroke-opacity="0.6"  filter="url(#glow4)"/>
+    <circle cx="858" cy="314" r="34"  fill="none" stroke="#a78bfa" stroke-width="2"   stroke-opacity="0.85" filter="url(#glow8)"/>
+    <circle cx="858" cy="314" r="9"   fill="#7c3aed" fill-opacity="0.9" filter="url(#glow8)"/>
+    <circle cx="858" cy="314" r="3.5" fill="#c4b5fd"/>
+
+    <!-- Crosshair lines -->
+    <line x1="858" y1="82"  x2="858" y2="252" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.25"/>
+    <line x1="858" y1="376" x2="858" y2="546" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.25"/>
+    <line x1="594" y1="314" x2="786" y2="314" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.25"/>
+    <line x1="930" y1="314" x2="1150" y2="314" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.25"/>
+
+    <!-- Diagonal cross-hairs (45°) -->
+    <line x1="762" y1="218" x2="800" y2="256" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.2"/>
+    <line x1="954" y1="218" x2="916" y2="256" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.2"/>
+    <line x1="762" y1="410" x2="800" y2="372" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.2"/>
+    <line x1="954" y1="410" x2="916" y2="372" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.2"/>
+
+    <!-- Tick marks at r=120 -->
+    <g stroke="#7c3aed" stroke-width="0.9" stroke-opacity="0.45">
+      <line x1="858" y1="194" x2="858" y2="182"/>
+      <line x1="858" y1="434" x2="858" y2="446"/>
+      <line x1="738" y1="314" x2="726" y2="314"/>
+      <line x1="978" y1="314" x2="990" y2="314"/>
+      <line x1="943" y1="229" x2="951" y2="221"/>
+      <line x1="773" y1="229" x2="765" y2="221"/>
+      <line x1="943" y1="399" x2="951" y2="407"/>
+      <line x1="773" y1="399" x2="765" y2="407"/>
+    </g>
+
+    <!-- Scan sweep (glowing pie slice suggesting active rotation) -->
+    <path d="M 858 314 L 858 194 A 120 120 0 0 1 978 314 Z" fill="#7c3aed" fill-opacity="0.035"/>
+    <path d="M 858 194 A 120 120 0 0 1 978 314" fill="none" stroke="#a78bfa" stroke-width="1.8"
+          stroke-opacity="0.55" filter="url(#glow4)"/>
+
+    <!-- Hexagonal sensor mosaic (inner detection grid) -->
+    <g fill="none" stroke="#7c3aed" stroke-width="0.55" stroke-opacity="0.38">
+      <!-- center hex -->
+      <polygon points="858,268 880,280 880,304 858,316 836,304 836,280"/>
+      <!-- ring 1 -->
+      <polygon points="858,312 880,324 880,348 858,360 836,348 836,324"/>
+      <polygon points="858,224 880,236 880,260 858,272 836,260 836,236"/>
+      <polygon points="896,290 918,302 918,326 896,338 874,326 874,302"/>
+      <polygon points="820,290 842,302 842,326 820,338 798,326 798,302"/>
+      <polygon points="896,246 918,258 918,282 896,294 874,282 874,258"/>
+      <polygon points="820,246 842,258 842,282 820,294 798,282 798,258"/>
+      <!-- ring 2 partial -->
+      <polygon points="934,268 956,280 956,304 934,316 912,304 912,280"/>
+      <polygon points="782,268 804,280 804,304 782,316 760,304 760,280"/>
+      <polygon points="934,312 956,324 956,348 934,360 912,348 912,324"/>
+      <polygon points="782,312 804,324 804,348 782,360 760,348 760,324"/>
+      <polygon points="858,356 880,368 880,392 858,404 836,392 836,368"/>
+    </g>
+
+    <!-- Detection signal markers (glow dots at key vertices) -->
+    <g filter="url(#glow3)">
+      <circle cx="858" cy="268" r="2.2" fill="#a78bfa" fill-opacity="0.9"/>
+      <circle cx="880" cy="280" r="1.8" fill="#7c3aed" fill-opacity="0.8"/>
+      <circle cx="836" cy="304" r="2"   fill="#a78bfa" fill-opacity="0.75"/>
+      <circle cx="918" cy="302" r="1.8" fill="#c4b5fd" fill-opacity="0.65"/>
+      <circle cx="798" cy="326" r="2"   fill="#7c3aed" fill-opacity="0.8"/>
+      <circle cx="956" cy="280" r="1.8" fill="#a78bfa" fill-opacity="0.55"/>
+      <circle cx="760" cy="294" r="1.8" fill="#a78bfa" fill-opacity="0.6"/>
+      <circle cx="880" cy="348" r="1.8" fill="#7c3aed" fill-opacity="0.65"/>
+      <!-- Anomaly (red = AI signal detected) -->
+      <circle cx="918" cy="258" r="3.2" fill="#ef4444" fill-opacity="0.88"/>
+      <circle cx="880" cy="360" r="2.2" fill="#ef4444" fill-opacity="0.65"/>
+      <circle cx="934" cy="316" r="1.8" fill="#ef4444" fill-opacity="0.5"/>
+      <!-- Auth (green = verified signal) -->
+      <circle cx="820" cy="268" r="2.2" fill="#22c55e" fill-opacity="0.78"/>
+      <circle cx="842" cy="348" r="1.8" fill="#22c55e" fill-opacity="0.55"/>
+    </g>
+
+    <!-- ===  READOUT BOXES === -->
+    <!-- Classification box -->
+    <rect x="956" y="144" width="148" height="62" rx="2"
+          fill="#04040a" fill-opacity="0.92" stroke="#7c3aed" stroke-width="0.6" stroke-opacity="0.38"/>
+    <text x="966" y="160" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.55" letter-spacing="1.5">CLASSIFICATION</text>
+    <line x1="966" y1="163" x2="1092" y2="163" stroke="#7c3aed" stroke-width="0.3" stroke-opacity="0.25"/>
+    <text x="966" y="178" font-family="'JetBrains Mono', monospace" font-size="10.5"
+          fill="#a78bfa" fill-opacity="0.92" font-weight="600" letter-spacing="0.5">AI_GENERATED</text>
+    <line x1="966" y1="181" x2="1092" y2="181" stroke="#7c3aed" stroke-width="0.3" stroke-opacity="0.2"/>
+    <text x="966" y="195" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#ef4444" fill-opacity="0.72" letter-spacing="1">CONFIDENCE: 94%</text>
+
+    <!-- Neural map box -->
+    <rect x="628" y="455" width="160" height="54" rx="2"
+          fill="#04040a" fill-opacity="0.88" stroke="#7c3aed" stroke-width="0.5" stroke-opacity="0.3"/>
+    <text x="638" y="470" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.5" letter-spacing="1.5">NEURAL_MAP</text>
+    <line x1="638" y1="473" x2="778" y2="473" stroke="#7c3aed" stroke-width="0.3" stroke-opacity="0.2"/>
+    <text x="638" y="486" font-family="'JetBrains Mono', monospace" font-size="9"
+          fill="#a78bfa" fill-opacity="0.8" letter-spacing="0.5">HEATMAP ACTIVE</text>
+    <text x="638" y="500" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#22c55e" fill-opacity="0.72" letter-spacing="1">22 SIGNATURES LOADED</text>
+
+    <!-- Coordinate readout -->
+    <text x="994" y="318" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.4" letter-spacing="1">X:858 Y:314</text>
+    <text x="858" y="88" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.38" letter-spacing="1" text-anchor="middle">N_AXIS</text>
+    <text x="604" y="318" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.38" letter-spacing="1">SCAN:ACTIVE</text>
+    <text x="858" y="540" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.32" letter-spacing="1" text-anchor="middle">S_AXIS</text>
+
+    <!-- ============ LEFT PANEL: TYPOGRAPHY ============ -->
+
+    <!-- Badge line -->
+    <line x1="68" y1="182" x2="88" y2="182" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.9"/>
+    <text x="96" y="186" font-family="'JetBrains Mono', monospace" font-size="9.5"
+          fill="#7c3aed" fill-opacity="0.9" letter-spacing="3.5">AI DETECTION ENGINE</text>
+
+    <!-- Brand name — the hero element -->
+    <text x="66" y="290" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif"
+          font-size="96" font-weight="800" fill="#f0eeff" letter-spacing="-4" opacity="0.97">AI</text>
+    <text x="222" y="290" font-family="'Bricolage Grotesque', 'Arial Black', sans-serif"
+          font-size="96" font-weight="800" fill="#7c3aed" letter-spacing="-4" filter="url(#glow8)">Finder</text>
+
+    <!-- Tagline -->
+    <text x="68" y="326" font-family="'Bricolage Grotesque', Arial, sans-serif"
+          font-size="14.5" font-weight="300" fill="#a78bfa" fill-opacity="0.6" letter-spacing="0.3">
+      See through the illusion.
+    </text>
+    <text x="68" y="346" font-family="'Bricolage Grotesque', Arial, sans-serif"
+          font-size="14.5" font-weight="300" fill="#a78bfa" fill-opacity="0.55" letter-spacing="0.3">
+      Detect AI-generated images &amp; text in seconds.
+    </text>
+
+    <!-- Divider line above stats -->
+    <line x1="68" y1="372" x2="490" y2="372" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.2"/>
+
+    <!-- Stats row -->
+    <text x="68"  y="402" font-family="'Bricolage Grotesque', Arial, sans-serif"
+          font-size="30" font-weight="700" fill="#a78bfa">22+</text>
+    <text x="68"  y="416" font-family="'JetBrains Mono', monospace"
+          font-size="8" fill="#a78bfa" fill-opacity="0.4" letter-spacing="2">AI SIGNATURES</text>
+
+    <line x1="148" y1="390" x2="148" y2="420" stroke="#7c3aed" stroke-width="0.6" stroke-opacity="0.2"/>
+
+    <text x="164" y="402" font-family="'Bricolage Grotesque', Arial, sans-serif"
+          font-size="30" font-weight="700" fill="#a78bfa">&lt;3s</text>
+    <text x="164" y="416" font-family="'JetBrains Mono', monospace"
+          font-size="8" fill="#a78bfa" fill-opacity="0.4" letter-spacing="2">DETECTION</text>
+
+    <line x1="244" y1="390" x2="244" y2="420" stroke="#7c3aed" stroke-width="0.6" stroke-opacity="0.2"/>
+
+    <text x="260" y="402" font-family="'Bricolage Grotesque', Arial, sans-serif"
+          font-size="30" font-weight="700" fill="#a78bfa">2-in-1</text>
+    <text x="260" y="416" font-family="'JetBrains Mono', monospace"
+          font-size="8" fill="#a78bfa" fill-opacity="0.4" letter-spacing="2">IMAGE + TEXT</text>
+
+    <!-- Feature lines -->
+    <text x="78" y="442" font-family="'JetBrains Mono', monospace" font-size="10.5"
+          fill="#f0eeff" fill-opacity="0.45" letter-spacing="0.5">▸  Neural vision heatmap</text>
+    <text x="78" y="460" font-family="'JetBrains Mono', monospace" font-size="10.5"
+          fill="#f0eeff" fill-opacity="0.45" letter-spacing="0.5">▸  Text pattern &amp; vocabulary analysis</text>
+    <text x="78" y="478" font-family="'JetBrains Mono', monospace" font-size="10.5"
+          fill="#f0eeff" fill-opacity="0.45" letter-spacing="0.5">▸  ChatGPT, Claude, Gemini &amp; 19 more</text>
+
+    <!-- URL line -->
+    <line x1="68" y1="504" x2="490" y2="504" stroke="#7c3aed" stroke-width="0.4" stroke-opacity="0.15"/>
+    <text x="68" y="525" font-family="'JetBrains Mono', monospace" font-size="11"
+          fill="#7c3aed" fill-opacity="0.65" letter-spacing="1.5">aifinder-phi.vercel.app</text>
+
+    <!-- ============ CORNER FRAME MARKS ============ -->
+    <g stroke="#7c3aed" stroke-width="0.9" stroke-opacity="0.22" fill="none">
+      <line x1="34" y1="34" x2="66" y2="34"/><line x1="34" y1="34" x2="34" y2="66"/>
+      <line x1="1166" y1="34" x2="1134" y2="34"/><line x1="1166" y1="34" x2="1166" y2="66"/>
+      <line x1="34" y1="594" x2="66" y2="594"/><line x1="34" y1="594" x2="34" y2="562"/>
+      <line x1="1166" y1="594" x2="1134" y2="594"/><line x1="1166" y1="594" x2="1166" y2="562"/>
+    </g>
+
+    <!-- Top system label -->
+    <text x="50" y="48" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.3" letter-spacing="2">AIFINDER SYSTEMS · REV 3.0 · SIGNAL_VOID</text>
+
+    <!-- Bottom right version -->
+    <text x="1150" y="582" font-family="'JetBrains Mono', monospace" font-size="7"
+          fill="#7c3aed" fill-opacity="0.25" letter-spacing="1" text-anchor="end">2026 · DETECTION · ACTIVE</text>
+
+  </g>
+</svg>
