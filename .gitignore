@@ -12,6 +12,7 @@ aifinder/.env.local
 # Build output
 dist/
 aifinder/dist/
+.vercel
 
 # Vite
 .vite/
